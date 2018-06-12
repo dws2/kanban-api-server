@@ -1,5 +1,11 @@
-export const validateItem = (req,res,next) => {
-  //validate the item
-  // if errors, throw error, else
-  next()
+import { validationResult} from 'express-validator/check'
+export const validate = (req,res,next) => {
+  const errors = validationResult(req)
+
+  if (!errors.isEmpty()) {
+    return res.status(422).json({errors: errors.array()})
+  } else {
+    next()
+  }
+  
 }

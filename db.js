@@ -9,7 +9,7 @@ export const db = () => {
   return typeorm.createConnection({
     type: "sqlite",
     database: "./database.sqlite",
-    logging: true,
+    logging: false,
     synchronize: true,
     entities: [
       ItemSchema, ListSchema
