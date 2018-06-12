@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "dumpdb": "rm database.sqlite",
     "start": "nodemon index.js --exec babel-node"
   },
   "babel": {
@@ -16,10 +17,9 @@
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
-    "class-validator": "^0.8.5",
+    "date-fns": "^1.29.0",
     "express": "^4.16.3",
     "nodemon": "^1.17.4",
-    "reflect-metadata": "^0.1.12",
     "sqlite3": "^4.0.0",
     "typeorm": "^0.2.7"
   },

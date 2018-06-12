@@ -1,10 +1,8 @@
 import { EntitySchema } from 'typeorm'
-import { List } from '../models/List'
-import { Item } from '../models/Item'
 
 export const ListSchema = new EntitySchema({
   name: "List",
-  target: List,
+  
   columns: {
     id: {
       primary: true,
@@ -26,7 +24,7 @@ export const ListSchema = new EntitySchema({
 
 export const ItemSchema = new EntitySchema({
   name: "Item",
-  target: Item,
+  
   columns: {
     id: {
       primary: true,
@@ -41,7 +39,7 @@ export const ItemSchema = new EntitySchema({
       nullable: true
     },
     dueDate: {
-      type: "datetime",
+      type: "date",
       nullable: true
     }
   },
