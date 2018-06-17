@@ -23,12 +23,12 @@ itemRouter.route('/')
   ], actions.addOne)
 
 itemRouter.route('/:id')
+  .get(actions.getOne)
   .put([
     checks.id,
     checks.title,
     checks.description,
     checks.dueDate,
-    checks.list,
     validate
   ],actions.updateOne)
   .delete(actions.deleteOne)

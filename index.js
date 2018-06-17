@@ -6,7 +6,7 @@ import {setupMiddleware} from './middleware';
 db().then( () => {
   
   const app = express()
-  const PORT = 3000
+  const PORT = 3333
   setupMiddleware(app)
   app.use('/api', restRouter)
   app.get("/", (req, res) => res.send(`Express running on port ${PORT}`))

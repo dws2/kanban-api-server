@@ -6,4 +6,5 @@ export const restRouter = express.Router()
 
 restRouter.use('/lists', listRouter)
 restRouter.use('/items', itemRouter)
+// restRouter.route('/reset')
 restRouter.use(apiErrorHandler)

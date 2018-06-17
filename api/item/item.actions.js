@@ -6,6 +6,12 @@ export function getAll({req, res, next}) {
     .catch(err=>next(err))
 }
 
+export async function getOne(req,res,next) {
+  const id = req.params.id
+  const data = await getById(items, id)
+  res.json(data)
+}
+
 export function addOne(req,res,next) {
   items().save(req.body)
     .then( item => res.status(201).send(item))
@@ -26,6 +32,7 @@ export function updateOne(req,res,next) {
   items().update(id, req.body)
     .then( async () => {
       const data = await getById(items, id)
+      
       res.status(201).json(data)
     })
     .catch( err=> next(err))
