@@ -22,7 +22,7 @@ export function deleteOne(req,res,next) {
   const id = req.params.id
   items().delete({ id: id})
   .then(() => {
-    res.status(201).send(`Item ${id} deleted successfully`)
+    res.status(200).send(`Item ${id} deleted successfully`)
   })
   .catch(err => next(err))
 }
@@ -32,7 +32,6 @@ export function updateOne(req,res,next) {
   items().update(id, req.body)
     .then( async () => {
       const data = await getById(items, id)
-      
       res.status(201).json(data)
     })
     .catch( err=> next(err))
