@@ -1,26 +1,31 @@
-import { items, getById } from '../utils'
+
+import { Item} from '../../db'
 
 export function getAll({req, res, next}) {
-  items().find({ relations: ['list']})
-    .then(data => res.json(data))
+  Item.findAll()
+    .then(items => res.json(items))
     .catch(err=>next(err))
 }
 
-export async function getOne(req,res,next) {
+export function getOne(req,res,next) {
   const id = req.params.id
-  const data = await getById(items, id)
-  res.json(data)
+  Item.findById(id)
+    .then(item => res.json(item))
+    .catch( err=> console.log(err))
 }
 
 export function addOne(req,res,next) {
-  items().save(req.body)
+  Item.create(req.body)
     .then( item => res.status(201).send(item))
     .catch(err=>next(err))
 }
 
 export function deleteOne(req,res,next) {
   const id = req.params.id
-  items().delete({ id: id})
+  Item.findById(id)
+    .then(item => {
+      return item.destroy()
+    })
   .then(() => {
     res.status(200).send(`Item ${id} deleted successfully`)
   })
@@ -29,10 +34,10 @@ export function deleteOne(req,res,next) {
 
 export function updateOne(req,res,next) {
   const id = req.params.id
-  items().update(id, req.body)
-    .then( async () => {
-      const data = await getById(items, id)
-      res.status(201).json(data)
+  Item.findById(id)
+    .then(item =>{
+      return item.update(req.body)
     })
+    .then(update => res.status(201).json(update))
     .catch( err=> next(err))
 }

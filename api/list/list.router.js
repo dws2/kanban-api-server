@@ -14,13 +14,11 @@ const checks = {
 listRouter.route('/')
   .get(actions.getAll)
   .post([
-    checks.title,
     validate
   ],actions.addOne)
 
 listRouter.route('/:id')
   .put([
-    checks.title,
     validate
   ],actions.updateOne)
   .delete(actions.deleteOne)

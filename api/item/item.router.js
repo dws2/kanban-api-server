@@ -15,20 +15,12 @@ const checks = {
 itemRouter.route('/')
   .get(actions.getAll)
   .post([
-    checks.list,
-    checks.title,
-    checks.description,
-    checks.dueDate,
     validate
   ], actions.addOne)
 
 itemRouter.route('/:id')
   .get(actions.getOne)
   .put([
-    checks.id,
-    checks.title,
-    checks.description,
-    checks.dueDate,
     validate
   ],actions.updateOne)
   .delete(actions.deleteOne)

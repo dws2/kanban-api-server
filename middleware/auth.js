@@ -4,6 +4,6 @@ export const authenticate = (req,res,next) => {
    if (req.query.accessToken && tokens.includes(req.query.accessToken)) {
      next()
    } else {
-     res.send('Error: Invalid Access Token')
+     res.status(401).send('Error: Invalid or Missing Access Token')
    }
  }

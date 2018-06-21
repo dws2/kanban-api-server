@@ -1,20 +1,26 @@
-import { lists, getById } from '../utils'
-
+import { List, Item} from '../../db'
 export function getAll(req, res, next) {
-  lists().find({ relations: ['items']})
-    .then(data => res.json(data))
-    .catch(err=>next(err))
+  List.findAll({
+    include: [{
+      model: Item
+    }]
+  }).then( lists => {
+    res.json(lists)
+  })
 }
 
 export function addOne(req,res,next) {
-  lists().save(req.body)
+  List.create(req.body)
     .then( item => res.status(201).send(item))
     .catch(err=>next(err))
 }
 
 export function deleteOne(req,res,next) {
   const id = req.params.id
-  lists().delete({ id: id})
+  List.findById(id)
+    .then(list => {
+      return list.destroy()
+    })
   .then(() => {
     res.status(201).send(`List ${id} deleted successfully`)
   })
@@ -23,10 +29,10 @@ export function deleteOne(req,res,next) {
 
 export function updateOne(req,res,next) {
   const id = req.params.id
-  lists().update(id, req.body)
-    .then( async () => {
-      const data = await getById(lists, id)
-      res.status(201).json(data)
+  List.findById(id)
+    .then(list => {
+      return list.update(req.body)
     })
+    .then(update => res.status(201).json(update))
     .catch( err=> next(err))
 }
