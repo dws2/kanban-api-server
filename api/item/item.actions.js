@@ -16,6 +16,7 @@ export function getOne(req,res,next) {
 
 export function addOne(req,res,next) {
   Item.create(req.body)
+    .catch(err=>next(err))
     .then( item => res.status(201).send(item))
     .catch(err=>next(err))
 }

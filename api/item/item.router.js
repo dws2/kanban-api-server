@@ -14,13 +14,9 @@ const checks = {
 
 itemRouter.route('/')
   .get(actions.getAll)
-  .post([
-    validate
-  ], actions.addOne)
+  .post(actions.addOne)
 
 itemRouter.route('/:id')
   .get(actions.getOne)
-  .put([
-    validate
-  ],actions.updateOne)
+  .put(actions.updateOne)
   .delete(actions.deleteOne)

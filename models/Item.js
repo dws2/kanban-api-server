@@ -18,9 +18,10 @@ export default (sequelize, type) => sequelize.define('item', {
   },
   dueDate: {
     type: type.DATEONLY,
+    allowNull: true,
     validate: {
       isDate: {
-        msg: 'Date must be a date string (YYYY-MM-DD, MM/DD/YYYY, etc)'
+        msg: 'Date must be a date string (YYYY-MM-DD, MM/DD/YYYY, etc) or null'
       }
     }
   }

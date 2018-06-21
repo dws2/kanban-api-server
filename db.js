@@ -15,8 +15,8 @@ export const Item = ItemModel(db, Sequelize)
 export const List = ListModel(db, Sequelize)
 
 List.hasMany(Item)
-
-db.sync({ force: true})
+export const resetDB = () => {
+  return db.sync({ force: true})
   .then(() => {
     console.log('DB and Tables created')
     List.create({title: 'Backlog'})
@@ -33,8 +33,9 @@ db.sync({ force: true})
     List.create({title: 'Active'})
     List.create({title: 'Complete'})
   })
+}
 
-
+resetDB()
 
 // export const db = () => {
 //   let exists = fs.existsSync('./database.sqlite') ? true : false
