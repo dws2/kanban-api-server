@@ -1,12 +1,46 @@
 # Kanban API Server
 
-## Endpoints
+This server acts as the backend for student projects.
 
-### `GET /lists`
 
-Returns an array of all lists and their items
+## Getting Started
 
-Example response:
+If you haven't already, remix this server into your own Glitch instance. Detailed instructions can be found in the assignment.
+
+### Locations
+
+The API is available at `https://YOUR-GLITCH-URL.glitch.com/api`. Responses are sent as JSON.
+
+### HTTP Verbs
+
+| Verb   | Actions                 |
+| ------ | ----------------------- |
+| GET    | Retrieves a resource(s) |
+| POST   | Creates a resource      |
+| PUT    | Updates a resource      |
+| DELETE | Deletes a resource      |
+
+## Authorization
+
+All actions require that the request be authorized with a provided `accessToken` parameter. For example:
+
+```
+https://YOUR-GLITCH-URL.glitch.com/api/lists?accessToken=YOUR_ACCESS_TOKEN
+```
+
+Unathorized requests will result in a `401` error response.
+
+___
+
+## Lists
+
+### Get all lists
+```
+GET /lists
+```
+Returns an array of all lists and their items.
+
+Response:
 
 ```json
 [
@@ -41,49 +75,191 @@ Example response:
 ]
 ```
 
-<!-- ### `GET /items`
+### Create a new list
+```
+POST /lists
+```
+Adds a new task list.
+
+#### Parameters
+
+| Name  | Type     | Description                          |
+| ----- | -------- | ------------------------------------ |
+| title | `string` | The title of the new list (required) |
+
+#### Example
+
+```js
+
+POST /lists
+
+{
+  "title": "Completed Items"
+}
+```
+
+#### Response
+
+```js
+{
+  "id": 1, // Auto generated list id
+  "title": "Completed Items" // Title provided by the request
+}
+```
+
+### Update a list
+```
+PUT /lists/:id
+```
+Update the list with the supplied `id`.
+
+#### Parameters
+
+| Name  | Type     | Description                          |
+| ----- | -------- | ------------------------------------ |
+| title | `string` | The title of the new list (required) |
+
+#### Example
+
+```js
+
+PUT /lists/1
+
+{
+  "title": "Completed Items"
+}
+```
+
+#### Response
+
+```js
+{
+  "id": 1,
+  "title": "Completed Items"
+}
+```
+
+### Delete a list
+```
+DELETE /lists/:id
+```
+
+Deletes the list with the supplied `id`.
+
+#### Example
+```
+DELETE /lists/3
+```
+
+#### Response
+
+```
+List 3 deleted successfuly 
+```
+
+---
+
+## Items
+
+### Get all Items
+```
+GET /items
+```
 
 Returns all items in an array:
 
 ```js
 [
+  // ...
   {
-
+    "id": 1,
+    "title": "Update CSS Properties",
+    "description": "Complete the required changes to fix page css.",
+    "dueDate": "2018-08-05",
+    "listId": 1
   }
   // ...
 ]
-``` -->
+```
 
-### `POST /items`
+### Add a new item
+```
+POST /items
+```
+Adds a new item to a list.
 
-Expects an object as follows:
+#### Parameters
 
-- `title: STRING` - Item title as a string. (REQUIRED)
-- `list: INT` - Parent list ID as an integer (REQUIRED)
-- `dueDate: STRING` - Due date of the item formated as a DATE readable string (optional)
-- `description: STRING` - Description of the item (optional)
+| Name        | Type      | Description                                             |
+| ----------- | --------- | ------------------------------------------------------- |
+| title       | `string`  | The title of the new item (required)                    |
+| listId      | `integer` | The id of the list the item will be added to (required) |
+| dueDate     | `string`  | A date formatted string of the due date (optional)      |
+| description | `string`  | Item description (optional)                             |
 
-example:
+#### Example
 
 ```json
 {
   "title": "A new todo item",
-  "list": 1,
+  "listId": 1,
   "description": "This is an example of the todo description",
   "dueDate": "2018-08-05"
 }
 ```
 
-Returns complete item object with assigned id. Example:
+#### Response
 
 ```json
 {
   "id": 9,
   "title": "A new todo item",
-  "list": 1,
+  "listId": 1,
   "description": "This is an example of the todo description",
   "dueDate": "2018-08-05"
 }
 ```
 
-### `PUT /items/:id`
+### Update an item
+```
+PUT /items/:id
+```
+Updates the item with the supplied `id`
+#### Parameters
+
+| Name        | Type     | Description                                        |
+| ----------- | -------- | -------------------------------------------------- |
+| title       | `string` | The title of the new item (required)               |
+| dueDate     | `string` | A date formatted string of the due date (optional) |
+| description | `string` | Item description (optional)                        |
+
+#### Example
+
+```json
+
+PUT /items/9
+
+{
+  "title": "An updated todo item",
+  "description": "This is an example of the todo description",
+  "dueDate": "2018-08-05"
+}
+```
+
+#### Response
+
+```json
+{
+  "id": 9,
+  "title": "An updated todo item",
+  "listId": 1,
+  "description": "This is an example of the todo description",
+  "dueDate": "2018-08-05"
+}
+```
+
+### Delete an item
+```
+PUT /items/:id
+```
+Deletes the item with the supplied `id`.
