@@ -7,8 +7,5 @@ export const restRouter = express.Router()
 
 restRouter.use('/lists', listRouter)
 restRouter.use('/items', itemRouter)
-restRouter.get('/reset', (req,res) => {
-  resetDB()
-    .then( () => res.send('DB Reset'))
-})
+restRouter.get('/reset', (req,res) => {resetDB().then( () => res.send('DB Reset'))})
 restRouter.use(apiErrorHandler)
