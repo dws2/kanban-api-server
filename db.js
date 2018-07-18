@@ -17,58 +17,41 @@ export const List = ListModel(db, Sequelize)
 List.hasMany(Item)
 export const resetDB = () => {
   return db.sync({ force: true})
-  .then(() => {
+  .then(async () => {
     console.log('DB and Tables created')
-    List.create({title: 'Backlog'})
-      .then(list => {
-        Item.create(
-          {
-            "dueDate": "2018-08-05T16:07:15.161Z",
-            "listId": list.id,
-            "title": "Validated item!",
-            "description": "this is a validated item added"
-          }
-        )
-      })
-    List.create({title: 'Active'})
-    List.create({title: 'Complete'})
+    console.time('---Populating Database---')
+    await populateDb(data)
+    console.timeEnd('---Population Complete---')
+    // List.create({title: 'Backlog'})
+    //   .then(list => {
+    //     Item.create(
+    //       {
+    //         "dueDate": "2018-08-05T16:07:15.161Z",
+    //         "listId": list.id,
+    //         "title": "Validated item!",
+    //         "description": "this is a validated item added"
+    //       }
+    //     )
+    //   })
+    // List.create({title: 'Active'})
+    // List.create({title: 'Complete'})
   })
 }
 
 resetDB()
 
-// export const db = () => {
-//   let exists = fs.existsSync('./database.sqlite') ? true : false
-  
-//   return typeorm.createConnection({
-//     type: "sqlite",
-//     database: "./database.sqlite",
-//     logging: false,
-//     synchronize: true,
-//     entities: [
-//       ItemSchema, ListSchema
-//     ]
-//   })
-//   .then( connection => {
-//     if (!exists) {
-//       return populateDb(connection)
-//     }
-//     return connection
-//   })
-// }
-
-// export const populateDb = (connection) => {
-//   data.forEach(list => {
-//     const {title, items} = list
-//     connection.getRepository('List').save({title: title})
-//       .then( newList => {
-//         items.forEach(item => {
-//           const newItem = Object.assign({}, item, {list: newList.id})
-//           connection.getRepository('Item').save(newItem)
-//         })
-//       })
-//   })
-// }
+export const populateDb = (data) => {
+  data.forEach(list => {
+    const {title, items} = list
+    List.create({title: title})
+      .then( newList => {
+        items.forEach(item => {
+          const newItem = Object.assign({}, item, {listId: newList.id})
+          Item.create(newItem)
+        })
+      })
+  })
+}
 
 const makeDate = (offset) => addDays(new Date(), offset)
 
@@ -94,12 +77,55 @@ const makeDate = (offset) => addDays(new Date(), offset)
   },{ 
     title: 'Implementation',
     items: [
-
+      {
+        title: 'Connect front end',
+        description: 'Connect UI to API endpoints. Implement all crud actions',
+        dueDate: makeDate(7)
+      },
+      {
+        title: 'Abstract repeated sass functionality',
+        description: 'Abtract repeated code into variables, mixins, or placeholders',
+        dueDate: makeDate(5)
+      },
+      {
+        title: 'Research API Usage',
+        description: 'Read over API documentation and plan CRUD actions.',
+        dueDate: makeDate(7)
+      },
     ]
   }, {
     title:'Complete',
     items: [
-
+      {
+        title: 'Research API Usage',
+        description: 'Read over API documentation and plan CRUD actions.',
+        dueDate: makeDate(7)
+      },
+      {
+        title: 'Research API Usage',
+        description: 'Read over API documentation and plan CRUD actions.',
+        dueDate: makeDate(7)
+      },
+      {
+        title: 'Research API Usage',
+        description: 'Read over API documentation and plan CRUD actions.',
+        dueDate: makeDate(7)
+      },
+      {
+        title: 'Research API Usage',
+        description: 'Read over API documentation and plan CRUD actions.',
+        dueDate: makeDate(7)
+      },
+      {
+        title: 'Research API Usage',
+        description: 'Read over API documentation and plan CRUD actions.',
+        dueDate: makeDate(7)
+      },
+      {
+        title: 'Research API Usage',
+        description: 'Read over API documentation and plan CRUD actions.',
+        dueDate: makeDate(7)
+      },
     ]
   }]
 
