@@ -4,7 +4,7 @@ import {setupMiddleware} from './middleware';
 // init database
 
 const app = express()
-const PORT = 3333
+const PORT = process.env.PORT || 3000
 setupMiddleware(app)
 app.use('/api', restRouter)
 app.get("/", (req, res) => res.send(`Express running on port ${PORT}`))
