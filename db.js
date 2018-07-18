@@ -1,4 +1,3 @@
-import * as typeorm from 'typeorm'
 import ItemModel from './models/Item'
 import ListModel from './models/List'
 import {addDays} from 'date-fns'

@@ -1,7 +1,7 @@
 import express from 'express'
 import * as actions from './list.actions'
 import { body } from 'express-validator/check'
-import { validate } from '../../middleware/validation'
+
 
 
 export const listRouter = express.Router()
@@ -13,12 +13,8 @@ const checks = {
 
 listRouter.route('/')
   .get(actions.getAll)
-  .post([
-    validate
-  ],actions.addOne)
+  .post(actions.addOne)
 
 listRouter.route('/:id')
-  .put([
-    validate
-  ],actions.updateOne)
+  .put(actions.updateOne)
   .delete(actions.deleteOne)
