@@ -1,6 +1,5 @@
 import express from "express"
 import { restRouter } from './api/restRouter'
-import {db} from './db'
 import {setupMiddleware} from './middleware';
 // init database
 

@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dumpdb": "rm database.sqlite",
-    "start": "nodemon index.js --exec babel-node"
+    "dev": "nodemon index.js --exec babel-node",
+    "start": "GLITCH=true babel-node index.js"
   },
   "babel": {
     "presets": [

@@ -1,10 +1,7 @@
 import express from 'express'
 import * as actions from './list.actions'
 
-
-
 export const listRouter = express.Router()
-
 
 listRouter.route('/')
   .get(actions.getAll)

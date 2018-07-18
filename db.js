@@ -5,9 +5,11 @@ import fs from 'fs'
 
 import Sequelize from 'sequelize'
 
+let storagePath = process.env.GLITCH ? './.data/database.sqlite' : './database.sqlite'
+
 const db = new Sequelize('db','user','pass', {
   dialect: 'sqlite',
-  storage: './database.sqlite'
+  storage: storagePath
 })
 
 export const Item = ItemModel(db, Sequelize)
