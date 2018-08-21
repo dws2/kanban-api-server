@@ -9,7 +9,9 @@ If you haven't already, remix this server into your own Glitch instance. Detaile
 
 ### Locations
 
-The API is available at `https://YOUR-GLITCH-URL.glitch.com/api`. Responses are sent as JSON.
+The API is available at `https://YOUR-GLITCH-PROJECT-NAME.glitch.me/api`. Responses are sent as JSON.
+
+For example, if your project on glitch is called "coconut-peony", your api path will be `https://coconut-peony.glitch.me/api`.
 
 ### HTTP Verbs
 
@@ -25,8 +27,10 @@ The API is available at `https://YOUR-GLITCH-URL.glitch.com/api`. Responses are 
 All actions require that the request be authorized with a provided `accessToken` parameter. For example:
 
 ```
-https://YOUR-GLITCH-URL.glitch.com/api/lists?accessToken=YOUR_ACCESS_TOKEN
+https://YOUR-GLITCH-PROJECT.glitch.me/api/lists?accessToken=YOUR_ACCESS_TOKEN
 ```
+
+For the purpose of this project, your access token is **5b1064585f4ab8706d275f90**
 
 Unathorized requests will result in a `401` error response.
 
@@ -190,12 +194,12 @@ Adds a new item to a list.
 
 #### Parameters
 
-| Name        | Type      | Description                                             |
-| ----------- | --------- | ------------------------------------------------------- |
-| title       | `string`  | The title of the new item (required)                    |
-| listId      | `integer` | The id of the list the item will be added to (required) |
-| dueDate     | `string`  | A date formatted string of the due date (optional)      |
-| description | `string`  | Item description (optional)                             |
+| Name        | Type      | Description                                                          |
+| ----------- | --------- | -------------------------------------------------------------------- |
+| title       | `string`  | The title of the new item (required)                                 |
+| listId      | `integer` | The id of the list the item will be added to (required)              |
+| dueDate     | `string`  | A date formatted string of the due date (optional, defaults to null) |
+| description | `string`  | Item description (optional)                                          |
 
 #### Example
 
