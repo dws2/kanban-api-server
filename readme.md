@@ -2,7 +2,6 @@
 
 This server acts as the backend for student projects.
 
-
 ## Getting Started
 
 If you haven't already, remix this server into your own Glitch instance. Detailed instructions can be found in the assignment.
@@ -36,6 +35,19 @@ Unauthorized requests will result in a `401` error response.
 
 ___
 
+# Endpoints
+
+- [Lists](#lists)
+  - [Get All Lists](#get-all-lists)
+  - [Create New List](#create-a-new-list)
+  - [Update a List](#update-a-list)
+  - [Delete a List](#delete-a-list)
+- [Items](#items)
+  - [Get All Items](#get-all-items)
+  - [Create New Item](#create-a-new-item)
+  - [Update a Item](#update-an-item)
+  - [Delete a Item](#delete-an-item)
+
 ## Lists
 
 ### Get all lists
@@ -46,7 +58,7 @@ Returns an array of all lists and their items.
 
 Response:
 
-```json
+```js
 [
   // ...
   {
@@ -186,7 +198,7 @@ Returns all items in an array:
 ]
 ```
 
-### Add a new item
+### Create a new item
 ```
 POST /items
 ```
@@ -203,7 +215,7 @@ Adds a new item to a list.
 
 #### Example
 
-```json
+```js
 {
   "title": "A new todo item",
   "listId": 1,
@@ -214,7 +226,7 @@ Adds a new item to a list.
 
 #### Response
 
-```json
+```js
 {
   "id": 9,
   "title": "A new todo item",
@@ -239,7 +251,7 @@ Updates the item with the supplied `id`
 
 #### Example
 
-```json
+```js
 
 PUT /items/9
 
@@ -252,7 +264,7 @@ PUT /items/9
 
 #### Response
 
-```json
+```js
 {
   "id": 9,
   "title": "An updated todo item",
