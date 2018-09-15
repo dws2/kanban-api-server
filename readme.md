@@ -39,12 +39,12 @@ ___
 
 - [Lists](#lists)
   - [Get All Lists](#get-all-lists)
-  - [Create New List](#create-new-list)
+  - [Create New List](#create-a-new-list)
   - [Update a List](#update-a-list)
   - [Delete a List](#delete-a-list)
 - [Items](#items)
   - [Get All Items](#get-all-items)
-  - [Create New Item](#create-new-item)
+  - [Create New Item](#create-a-new-item)
   - [Update a Item](#update-an-item)
   - [Delete a Item](#delete-an-item)
 
@@ -198,7 +198,7 @@ Returns all items in an array:
 ]
 ```
 
-### Add a new item
+### Create a new item
 ```
 POST /items
 ```
