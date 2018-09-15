@@ -58,7 +58,7 @@ Returns an array of all lists and their items.
 
 Response:
 
-```json
+```js
 [
   // ...
   {
@@ -215,7 +215,7 @@ Adds a new item to a list.
 
 #### Example
 
-```json
+```js
 {
   "title": "A new todo item",
   "listId": 1,
@@ -226,7 +226,7 @@ Adds a new item to a list.
 
 #### Response
 
-```json
+```js
 {
   "id": 9,
   "title": "A new todo item",
@@ -251,7 +251,7 @@ Updates the item with the supplied `id`
 
 #### Example
 
-```json
+```js
 
 PUT /items/9
 
@@ -264,7 +264,7 @@ PUT /items/9
 
 #### Response
 
-```json
+```js
 {
   "id": 9,
   "title": "An updated todo item",
