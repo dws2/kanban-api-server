@@ -2,7 +2,6 @@
 
 This server acts as the backend for student projects.
 
-
 ## Getting Started
 
 If you haven't already, remix this server into your own Glitch instance. Detailed instructions can be found in the assignment.
@@ -35,6 +34,19 @@ For the purpose of this project, your access token is **5b1064585f4ab8706d275f90
 Unauthorized requests will result in a `401` error response.
 
 ___
+
+# Endpoints
+
+- [Lists](#lists)
+  - [Get All Lists](#get-all-lists)
+  - [Create New List](#create-new-list)
+  - [Update a List](#update-a-list)
+  - [Delete a List](#delete-a-list)
+- [Items](#items)
+  - [Get All Items](#get-all-items)
+  - [Create New Item](#create-new-item)
+  - [Update a Item](#update-an-item)
+  - [Delete a Item](#delete-an-item)
 
 ## Lists
 
