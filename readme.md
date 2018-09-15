@@ -32,7 +32,7 @@ https://YOUR-GLITCH-PROJECT.glitch.me/api/lists?accessToken=YOUR_ACCESS_TOKEN
 
 For the purpose of this project, your access token is **5b1064585f4ab8706d275f90**
 
-Unathorized requests will result in a `401` error response.
+Unauthorized requests will result in a `401` error response.
 
 ___
 
