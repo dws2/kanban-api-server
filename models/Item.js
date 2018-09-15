@@ -7,7 +7,7 @@ export default (sequelize, type) => sequelize.define('item', {
   title: {
     type: type.STRING,
     allowNull: false,
-    valdate: {
+    validate: {
       notEmpty: {
         msg: 'title cannot be empty. please enter a title.'
       }

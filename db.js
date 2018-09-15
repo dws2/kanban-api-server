@@ -5,7 +5,7 @@ import fs from 'fs'
 
 import Sequelize from 'sequelize'
 
-let storagePath = process.env.GLITCH ? './.data/database.sqlite' : './database.sqlite'
+let storagePath = './.data/database.sqlite'
 
 const db = new Sequelize('db','user','pass', {
   dialect: 'sqlite',
@@ -20,22 +20,9 @@ export const resetDB = () => {
   return db.sync({ force: true})
   .then(async () => {
     console.log('DB and Tables created')
-    console.time('---Populating Database---')
+    console.log('---Populating Database---')
     await populateDb(data)
-    console.timeEnd('---Population Complete---')
-    // List.create({title: 'Backlog'})
-    //   .then(list => {
-    //     Item.create(
-    //       {
-    //         "dueDate": "2018-08-05T16:07:15.161Z",
-    //         "listId": list.id,
-    //         "title": "Validated item!",
-    //         "description": "this is a validated item added"
-    //       }
-    //     )
-    //   })
-    // List.create({title: 'Active'})
-    // List.create({title: 'Complete'})
+    console.log('---Population Complete---')
   })
 }
 
@@ -89,44 +76,29 @@ const makeDate = (offset) => addDays(new Date(), offset)
         dueDate: makeDate(5)
       },
       {
-        title: 'Research API Usage',
-        description: 'Read over API documentation and plan CRUD actions.',
-        dueDate: makeDate(7)
+        title: 'Develop Modal Form Component',
+        description: 'Set up functionality for the modal form',
+        dueDate: makeDate(2)
       },
     ]
   }, {
     title:'Complete',
     items: [
       {
-        title: 'Research API Usage',
-        description: 'Read over API documentation and plan CRUD actions.',
-        dueDate: makeDate(7)
+        title: 'Implement web storage',
+        description: 'Set up customizations using localstorage.',
+        dueDate: makeDate(3)
       },
       {
-        title: 'Research API Usage',
-        description: 'Read over API documentation and plan CRUD actions.',
-        dueDate: makeDate(7)
+        title: 'Create Form Validation Class',
+        description: 'Implement common validation schemes into reusable class.',
+        dueDate: makeDate(2)
       },
       {
-        title: 'Research API Usage',
-        description: 'Read over API documentation and plan CRUD actions.',
-        dueDate: makeDate(7)
-      },
-      {
-        title: 'Research API Usage',
-        description: 'Read over API documentation and plan CRUD actions.',
-        dueDate: makeDate(7)
-      },
-      {
-        title: 'Research API Usage',
-        description: 'Read over API documentation and plan CRUD actions.',
-        dueDate: makeDate(7)
-      },
-      {
-        title: 'Research API Usage',
-        description: 'Read over API documentation and plan CRUD actions.',
-        dueDate: makeDate(7)
-      },
+        title: 'Research necessary a11y expectations',
+        description: 'Determine the needed a11y requirements for the project',
+        dueDate: makeDate(1)
+      }
     ]
   }]
 
