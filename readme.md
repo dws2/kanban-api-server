@@ -276,6 +276,6 @@ PUT /items/9
 
 ### Delete an item
 ```
-PUT /items/:id
+DELETE /items/:id
 ```
 Deletes the item with the supplied `id`.
